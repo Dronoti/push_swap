@@ -36,16 +36,18 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-int	ft_isdigit(int ch, t_st *a)
+int	ft_isdigit(int argc, int ch, t_st *a)
 {
 	if (ch >= '0' && ch <= '9')
 		return (1);
+	else if (argc == 2 && ch == ' ')
+		return (0);
 	else if (ch != '\0')
 		ft_exit(a);
 	return (0);
 }
 
-int	ft_atoi(const char *ptr, t_st *a)
+int	ft_atoi(int argc, const char *ptr, t_st *a)
 {
 	unsigned int	i;
 	long long		num;
@@ -62,7 +64,7 @@ int	ft_atoi(const char *ptr, t_st *a)
 			sign = -1;
 		i++;
 	}
-	while (ft_isdigit(ptr[i], a))
+	while (ft_isdigit(argc, ptr[i], a))
 	{
 		num = num * 10 + (ptr[i] - '0');
 		if (num > 2147483647 && sign == 1)

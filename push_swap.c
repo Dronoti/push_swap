@@ -12,32 +12,91 @@
 
 #include "push_swap.h"
 
-void	ft_fill_stack(char **argv, t_st **a)
+void	ft_onearg_stack(int argc, char **argv, t_st **a)
 {
 	int		i;
 	int		nbr;
 	t_st	*tmp;
 
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (argv[1][i])
 	{
-		nbr = ft_atoi(argv[i], *a);
-		tmp = ft_lstnew(nbr, *a);
-		ft_lstadd_back(a, tmp);
+		while (ft_isspace(argv[1][i]))
+			i++;
+		if (argv[1][i])
+		{
+			nbr = ft_atoi(argc, argv[1] + i, *a);
+			tmp = ft_lstnew(nbr, *a);
+			ft_lstadd_back(a, tmp);
+			while (!ft_isspace(argv[1][i]) && argv[1][i])
+				i++;
+		}
+	}
+}
+
+void	ft_fill_stack(int argc, char **argv, t_st **a)
+{
+	int		i;
+	int		nbr;
+	t_st	*tmp;
+
+	if (argc == 2)
+		ft_onearg_stack(argc, argv, a);
+	else
+	{
+		i = 1;
+		while (argv[i])
+		{
+			nbr = ft_atoi(argc, argv[i], *a);
+			tmp = ft_lstnew(nbr, *a);
+			ft_lstadd_back(a, tmp);
+			i++;
+		}
+	}
+}
+
+int	*ft_create_sort_arr(t_st *lst, int len)
+{
+	t_st	*tmp;
+	int		*arr;
+	int		i;
+
+	i = 0;
+	tmp = lst;
+	arr = (int *)malloc(sizeof(int) * len);
+	while (tmp)
+	{
+		arr[i] = tmp->n;
+		tmp = tmp->next;
 		i++;
 	}
+	ft_qsort(arr, 0, len - 1);
+	return (arr);
 }
 
 int	main(int argc, char **argv)
 {
 	t_st	*a;
 	t_st	*b;
+	int		*arr;
 
 	if (argc >= 2)
 	{
 		a = NULL;
 		b = NULL;
-		ft_fill_stack(argv, &a);
+		ft_fill_stack(argc, argv, &a);
+		if (a)
+		{
+			ft_lstdupnbr(a);
+			if (ft_lstsorted(a))
+			{
+				ft_lstclear(&a);
+				exit(EXIT_SUCCESS);
+			}
+			arr = ft_create_sort_arr(a, ft_lstsize(a));
+			ft_lstclear(&a);
+			ft_lstclear(&b);
+		}
 	}
 	return (0);
 }

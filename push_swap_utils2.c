@@ -17,5 +17,34 @@ void	ft_exit(t_st *a)
 	ft_putstr_fd("Error\n", 2);
 	if (a)
 		ft_lstclear(&a);
-	exit (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_qsort(int *arr, int left, int right)
+{
+	int	pivot;
+	int	min;
+	int	max;
+	int	tmp;
+
+	min = left;
+	max = right;
+	pivot = arr[(max + min) / 2];
+	while (min <= max)
+	{
+		while (arr[max] > pivot)
+			max--;
+		while (arr[min] < pivot)
+			min++;
+		if (min <= max)
+		{
+			tmp = arr[min];
+			arr[min++] = arr[max];
+			arr[max--] = tmp;
+		}
+		if (left < max)
+			ft_qsort(arr, left, max);
+		if (right > min)
+			ft_qsort(arr, min, right);
+	}
 }
