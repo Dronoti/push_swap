@@ -74,6 +74,21 @@ int	*ft_create_sort_arr(t_st *lst, int len)
 	return (arr);
 }
 
+void	ft_sort(t_st **a, t_st **b, int *arr)
+{
+	int	len;
+
+	len = ft_lstsize(*a);
+	if (len == 2)
+		ft_sort_two(a, 'a');
+	else if (len == 3)
+		ft_sort_three(a, 'a');
+	else if (len == 4 || len == 5)
+		ft_sort_five(a, b, len, arr);
+	else
+		ft_big_sort(a, b, len, arr);
+}
+
 int	main(int argc, char **argv)
 {
 	t_st	*a;
@@ -94,8 +109,10 @@ int	main(int argc, char **argv)
 				exit(EXIT_SUCCESS);
 			}
 			arr = ft_create_sort_arr(a, ft_lstsize(a));
+			ft_sort(&a, &b, arr);
 			ft_lstclear(&a);
 			ft_lstclear(&b);
+			free(arr);
 		}
 	}
 	return (0);

@@ -20,7 +20,8 @@ void	ft_push(t_st **a, t_st **b, int stack)
 	{
 		tmp = *b;
 		*b = (*b)->next;
-		(*b)->prev = NULL;
+		if (*b)
+			(*b)->prev = NULL;
 		ft_lstadd_front(a, tmp);
 		ft_putstr_fd("pa\n", 1);
 	}
@@ -28,7 +29,8 @@ void	ft_push(t_st **a, t_st **b, int stack)
 	{
 		tmp = *a;
 		*a = (*a)->next;
-		(*a)->prev = NULL;
+		if (*a)
+			(*a)->prev = NULL;
 		ft_lstadd_front(b, tmp);
 		ft_putstr_fd("pb\n", 1);
 	}

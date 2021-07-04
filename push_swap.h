@@ -50,5 +50,15 @@ void	ft_rotate(t_st **a, int visible, int stack);
 void	ft_rotate_r(t_st **a, t_st **b);
 void	ft_rev_rotate(t_st **a, int visible, int stack);
 void	ft_rev_rotate_r(t_st **a, t_st **b);
+void	ft_sort(t_st **a, t_st **b, int *arr);
+void	ft_sort_two(t_st **a, int stack);
+void	ft_sort_three(t_st **a, int stack);
+void	ft_sort_five(t_st **a, t_st **b, int len, int *arr);
+void	ft_big_sort(t_st **a, t_st **b, int len, int *arr);
+void	ft_find_direction(t_st **b, int nbr, int len, int stack);
+
+void	ft_find(t_st **a, t_st **b, int range, int block, int *arr, int len);
+int		ft_steps_up(t_st **a, int block, int range, int *arr, int len);
+int		ft_steps_down(t_st **a, int block, int range, int *arr, int len);
 
 #endif

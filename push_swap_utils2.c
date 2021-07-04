@@ -48,3 +48,67 @@ void	ft_qsort(int *arr, int left, int right)
 			ft_qsort(arr, min, right);
 	}
 }
+
+void	ft_find_direction(t_st **b, int nbr, int len, int stack)
+{
+	int		index;
+	t_st	*tmp;
+
+	tmp = *b;
+	index = 0;
+	while (tmp && tmp->n != nbr)
+	{
+		tmp = tmp->next;
+		index++;
+	}
+	if (index > len / 2)
+		ft_rev_rotate(b, 1, stack);
+	else
+		ft_rotate(b, 1, stack);
+}
+
+int	ft_steps_up(t_st **a, int block, int range, int *arr, int len)
+{
+	int		steps;
+	int		start;
+	t_st	*tmp;
+
+	steps = 0;
+	tmp = *a;
+	while (tmp)
+	{
+		start = block * range - range;
+		while (start < block * range && start < len)
+		{
+			if (tmp->n == arr[start])
+				return (steps);
+			start++;
+		}
+		tmp = tmp->next;
+		steps++;
+	}
+	return (-1);
+}
+
+int	ft_steps_down(t_st **a, int block, int range, int *arr, int len)
+{
+	int		steps;
+	int		start;
+	t_st	*tmp;
+
+	steps = 1;
+	tmp = ft_lstlast(*a);
+	while (tmp)
+	{
+		start = block * range - range;
+		while (start < block * range && start < len)
+		{
+			if (tmp->n == arr[start])
+				return (steps);
+			start++;
+		}
+		tmp = tmp->prev;
+		steps++;
+	}
+	return (-1);
+}
