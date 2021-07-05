@@ -49,7 +49,7 @@ void	ft_qsort(int *arr, int left, int right)
 	}
 }
 
-void	ft_find_direction(t_st **b, int nbr, int len, int stack)
+void	ft_direction(t_st **b, int nbr, int stack)
 {
 	int		index;
 	t_st	*tmp;
@@ -61,53 +61,36 @@ void	ft_find_direction(t_st **b, int nbr, int len, int stack)
 		tmp = tmp->next;
 		index++;
 	}
-	if (index > len / 2)
+	if (index > ft_lstsize(*b) / 2)
 		ft_rev_rotate(b, 1, stack);
 	else
 		ft_rotate(b, 1, stack);
 }
 
-int	ft_steps_up(t_st **a, int block, int range, int *arr, int len)
+int	ft_steps(t_st **a, int *arr, t_parm *parm, int direction)
 {
 	int		steps;
 	int		start;
 	t_st	*tmp;
 
-	steps = 0;
-	tmp = *a;
+	steps = direction;
+	if (direction)
+		tmp = ft_lstlast(*a);
+	else
+		tmp = *a;
 	while (tmp)
 	{
-		start = block * range - range;
-		while (start < block * range && start < len)
+		start = parm->block * parm->range - parm->range;
+		while (start < parm->block * parm->range && start < parm->len)
 		{
 			if (tmp->n == arr[start])
 				return (steps);
 			start++;
 		}
-		tmp = tmp->next;
-		steps++;
-	}
-	return (-1);
-}
-
-int	ft_steps_down(t_st **a, int block, int range, int *arr, int len)
-{
-	int		steps;
-	int		start;
-	t_st	*tmp;
-
-	steps = 1;
-	tmp = ft_lstlast(*a);
-	while (tmp)
-	{
-		start = block * range - range;
-		while (start < block * range && start < len)
-		{
-			if (tmp->n == arr[start])
-				return (steps);
-			start++;
-		}
-		tmp = tmp->prev;
+		if (direction)
+			tmp = tmp->prev;
+		else
+			tmp = tmp->next;
 		steps++;
 	}
 	return (-1);

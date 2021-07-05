@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
 
 typedef struct s_num
 {
@@ -23,6 +22,13 @@ typedef struct s_num
 	struct s_num	*prev;
 	struct s_num	*next;
 }				t_st;
+
+typedef struct s_sort_utils
+{
+	int	block;
+	int	range;
+	int	len;
+}				t_parm;
 
 void	ft_fill_stack(int argc, char **argv, t_st **a);
 void	ft_onearg_stack(int argc, char **argv, t_st **a);
@@ -55,10 +61,8 @@ void	ft_sort_two(t_st **a, int stack);
 void	ft_sort_three(t_st **a, int stack);
 void	ft_sort_five(t_st **a, t_st **b, int len, int *arr);
 void	ft_big_sort(t_st **a, t_st **b, int len, int *arr);
-void	ft_find_direction(t_st **b, int nbr, int len, int stack);
-
-void	ft_find(t_st **a, t_st **b, int range, int block, int *arr, int len);
-int		ft_steps_up(t_st **a, int block, int range, int *arr, int len);
-int		ft_steps_down(t_st **a, int block, int range, int *arr, int len);
+void	ft_direction(t_st **b, int nbr, int stack);
+void	ft_find(t_st **a, t_st **b, int *arr, t_parm *parm);
+int		ft_steps(t_st **a, int *arr, t_parm *parm, int direction);
 
 #endif

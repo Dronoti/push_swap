@@ -69,13 +69,13 @@ void	ft_sort_five(t_st **a, t_st **b, int len, int *arr)
 		ft_push(a, b, 'a');
 }
 
-void	ft_find(t_st **a, t_st **b, int range, int block, int *arr, int len)
+void	ft_find(t_st **a, t_st **b, int *arr, t_parm *parm)
 {
 	int	steps_up;
 	int	steps_down;
 
-	steps_up = ft_steps_up(a, block, range, arr, len);
-	steps_down = ft_steps_down(a, block, range, arr, len);
+	steps_up = ft_steps(a, arr, parm, 0);
+	steps_down = ft_steps(a, arr, parm, 1);
 	if (steps_up <= steps_down)
 	{
 		while (steps_up--)
@@ -91,31 +91,28 @@ void	ft_find(t_st **a, t_st **b, int range, int block, int *arr, int len)
 
 void	ft_big_sort(t_st **a, t_st **b, int len, int *arr)
 {
-	int	block;
-	int	range;
-	int	i;
+	t_parm	parm;
 
-	block = 1;
+	parm.block = 1;
+	parm.len = len;
 	if (len < 25)
-		range = 1;
-	else if (len < 100)
-		range = 20;
-	else if (len >= 100 && len < 500)
-		range = len / 4;
+		parm.range = 1;
+	else if (len <= 100)
+		parm.range = 18;
+	else if (len > 100 && len < 500)
+		parm.range = len / 4;
 	else if (len >= 500)
-		range = len / 8;
+		parm.range = len / 8;
 	while (*a)
 	{
-		while (ft_lstsize(*b) < block * range && *a)
-			ft_find(a, b, range, block, arr, len);
-		block++;
+		while (ft_lstsize(*b) < parm.block * parm.range && *a)
+			ft_find(a, b, arr, &parm);
+		parm.block++;
 	}
-	i = len - 1;
-	while (*b)
+	while (parm.len--)
 	{
-		while ((*b)->n != arr[i])
-			ft_find_direction(b, arr[i], len, 'b');
+		while ((*b)->n != arr[parm.len])
+			ft_direction(b, arr[parm.len], 'b');
 		ft_push(a, b, 'a');
-		i--;
 	}
 }
