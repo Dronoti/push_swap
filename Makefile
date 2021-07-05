@@ -30,7 +30,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	gcc $(FLAGS) -I ./ $^ -o $(NAME)
 
-%.o: %.c:
+%.o: %.c
 	gcc $(FLAGS) -I ./ -c $< -o $@
 
 clean:
