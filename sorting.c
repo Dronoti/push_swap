@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:21:58 by bkael             #+#    #+#             */
-/*   Updated: 2021/07/01 18:22:21 by bkael            ###   ########.fr       */
+/*   Updated: 2021/07/05 18:22:21 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_sort_five(t_st **a, t_st **b, int len, int *arr)
 		ft_push(a, b, 'a');
 }
 
-void	ft_find(t_st **a, t_st **b, int *arr, t_parm *parm)
+void	ft_move(t_st **a, t_st **b, int *arr, t_parm *parm)
 {
 	int	steps_up;
 	int	steps_down;
@@ -98,15 +98,15 @@ void	ft_big_sort(t_st **a, t_st **b, int len, int *arr)
 	if (len < 25)
 		parm.range = 1;
 	else if (len <= 100)
-		parm.range = 18;
+		parm.range = 19;
 	else if (len > 100 && len < 500)
 		parm.range = len / 4;
 	else if (len >= 500)
-		parm.range = len / 8;
+		parm.range = len / 11;
 	while (*a)
 	{
 		while (ft_lstsize(*b) < parm.block * parm.range && *a)
-			ft_find(a, b, arr, &parm);
+			ft_move(a, b, arr, &parm);
 		parm.block++;
 	}
 	while (parm.len--)

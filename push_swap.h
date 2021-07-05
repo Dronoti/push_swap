@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 13:06:11 by bkael             #+#    #+#             */
-/*   Updated: 2021/06/27 13:11:41 by bkael            ###   ########.fr       */
+/*   Updated: 2021/07/05 13:11:41 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_sort_three(t_st **a, int stack);
 void	ft_sort_five(t_st **a, t_st **b, int len, int *arr);
 void	ft_big_sort(t_st **a, t_st **b, int len, int *arr);
 void	ft_direction(t_st **b, int nbr, int stack);
-void	ft_find(t_st **a, t_st **b, int *arr, t_parm *parm);
+void	ft_move(t_st **a, t_st **b, int *arr, t_parm *parm);
 int		ft_steps(t_st **a, int *arr, t_parm *parm, int direction);
 
 #endif
