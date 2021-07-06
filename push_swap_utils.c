@@ -58,7 +58,7 @@ int	ft_atoi(int argc, const char *ptr, t_st *a)
 	sign = 1;
 	while (ft_isspace(ptr[i]))
 		i++;
-	if (ptr[i] == '-' || ptr[i] == '+')
+	if (ft_plus_minus(ptr, i, a))
 	{
 		if (ptr[i] == '-')
 			sign = -1;

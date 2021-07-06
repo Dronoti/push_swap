@@ -34,6 +34,7 @@ void	ft_fill_stack(int argc, char **argv, t_st **a);
 void	ft_onearg_stack(int argc, char **argv, t_st **a);
 int		ft_atoi(int argc, const char *ptr, t_st *a);
 int		ft_isspace(int c);
+int		ft_plus_minus(const char *ptr, int i, t_st *a);
 int		ft_isdigit(int argc, int ch, t_st *a);
 void	ft_exit(t_st *a);
 void	ft_putstr_fd(char *s, int fd);

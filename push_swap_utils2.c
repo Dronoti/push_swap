@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+int	ft_plus_minus(const char *ptr, int i, t_st *a)
+{
+	if ((ptr[i] == '-' || ptr[i] == '+') && !ptr[i + 1])
+		ft_exit(a);
+	else if ((ptr[i] == '-' || ptr[i] == '+') && ptr[i + 1])
+		return (1);
+	return (0);
+}
+
 void	ft_exit(t_st *a)
 {
 	ft_putstr_fd("Error\n", 2);
