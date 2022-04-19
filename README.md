@@ -32,7 +32,7 @@
 ### Использование
 Запуск:
 ```bash
-git https://github.com/Dronoti/push_swap.git push_swap && cd push_swap && cd src && make && make clean && ./push_swap 3 1 2
+git clone https://github.com/Dronoti/push_swap.git push_swap && cd push_swap && cd src && make && make clean && ./push_swap 3 1 2 -1 5
 ```
 С помощью аргументов командной строки программа принимает на вход набор случайных целых чисел и выводит список инструкций, которые требуются для сортировки стека.
 
